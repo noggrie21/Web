@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'movies:create' %}" method="POST">
+  {% csrf_token %}
+  {{ movieform.as_p }}
+  {% bootstrap_button "작성" button_type="submit" button_class="btn-primary" %}
+</form>
+{% endblock content %}

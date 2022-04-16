@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-baseline">
+  <h1 class="fs-1 fw-bold">INDEX</h1>
+  <a href="{% url 'movies:create' %}" class="btn btn-outline-primary">새 글</a>
+</div>
+<hr>
+{% for movie in movies %}
+
+{% comment %} /<a href="{% url 'movies:detail' movie.pk %}"> {% endcomment %}
+  {{ movie.title }}
+{% comment %} </a> {% endcomment %}
+<hr>
+{% endfor %}
+{% endblock content %}

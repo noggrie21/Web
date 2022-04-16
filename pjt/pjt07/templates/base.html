@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  {% load bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  <div class="container p-3">
+    {% if request.user.is_authenticated %}
+      <h1>Hello, {{ request.user }}</h1>
+      <a href="" class="btn btn-outline-secondary">회원정보수정</a>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_button "Logout" button_type="submit" button_class="btn-outline-secondary" %}
+      </form>
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_button "회원탈퇴" button_type="submit" button_class="btn-outline-secondary" %}
+      </form>
+    {% else %}
+    <nav class="d-flex flex-row-reverse">
+      <form action="" method="POST">
+        {% csrf_token %}
+        {% bootstrap_button "Login" button_type="submit" button_class="btn-outline-secondary mx-1" %}
+      </form>
+      <a href="" class="btn btn-outline-secondary mx-1">Signup</a>
+    </nav>
+    {% endif %}
+    <hr>
+    {% block content %}
+    {% endblock content %}
+  </div>
+</body>
+</html>
