@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
-<form action="{% url 'movies:create' %}" method="POST">
-  {% csrf_token %}
-  {{ movieform.as_p }}
-  {% bootstrap_button "작성" button_type="submit" button_class="btn-primary" %}
-</form>
+<h1 class="fs-1 fw-bold">CREATE</h1>
+<hr>
+  <form action="{% url 'movies:create' %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form movieform %}
+    <div class="d-flex justify-content-end">
+      {% bootstrap_button "작성" button_type="submit" button_class="btn-outline-primary mx-1" %}
+      <a href="{% url 'movies:index' %}" class="btn btn-outline-info mx-1">홈</a>
+    </div>
+  </form>
 {% endblock content %}

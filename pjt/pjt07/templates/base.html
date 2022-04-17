@@ -12,23 +12,24 @@
   {% bootstrap_javascript %}
   <div class="container p-3">
     {% if request.user.is_authenticated %}
-      <h1>Hello, {{ request.user }}</h1>
-      <a href="" class="btn btn-outline-secondary">회원정보수정</a>
-      <form action="" method="POST">
-        {% csrf_token %}
-        {% bootstrap_button "Logout" button_type="submit" button_class="btn-outline-secondary" %}
-      </form>
-      <form action="" method="POST">
-        {% csrf_token %}
-        {% bootstrap_button "회원탈퇴" button_type="submit" button_class="btn-outline-secondary" %}
-      </form>
+      <nav class="d-flex justify-content-between align-items-baseline">
+        <h1 class="m-0">Hello, {{ request.user }}</h1>
+        <div class="d-flex flex-row">
+          <form action="{% url 'accounts:logout' %}" method="POST">
+            {% csrf_token %}
+            {% bootstrap_button "로그아웃" button_type="submit" button_class="btn-outline-secondary mx-1 text-nowrap" %}
+          </form>
+          <a href="" class="btn btn-outline-secondary mx-1 text-nowrap">회원정보수정</a>
+          <form action="" method="POST">
+            {% csrf_token %}
+            {% bootstrap_button "회원탈퇴" button_type="submit" button_class="btn-outline-secondary mx-1 text-nowrap"  %}
+          </form>
+        </div>
+      </nav>
     {% else %}
-    <nav class="d-flex flex-row-reverse">
-      <form action="" method="POST">
-        {% csrf_token %}
-        {% bootstrap_button "Login" button_type="submit" button_class="btn-outline-secondary mx-1" %}
-      </form>
-      <a href="" class="btn btn-outline-secondary mx-1">Signup</a>
+    <nav class="d-flex justify-content-end">
+      <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary mx-1">Login</a>
+      <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary mx-1">Signup</a>
     </nav>
     {% endif %}
     <hr>

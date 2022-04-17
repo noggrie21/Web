@@ -9,7 +9,7 @@
 {% for movie in movies %}
 
 {% comment %} /<a href="{% url 'movies:detail' movie.pk %}"> {% endcomment %}
-  {{ movie.title }}
+  <a href="{% url 'movies:detail' movie.pk %}" class="text-decoration-none">{{ movie.title }}</a>
 {% comment %} </a> {% endcomment %}
 <hr>
 {% endfor %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<h1 class="fs-1 fw-bold">DETAIL</h1>
+<hr>
+<p class="fs-4">{{ movie.title }}</p>
+<p>{{ movie.description }}</p>
+<div class="d-flex justify-content-end">
+  <a href="{% url 'movies:update' movie.pk %}" class="btn btn-outline-warning mx-1">수정</a>
+  <form action="" method="POST">
+    {% csrf_token %}
+    {% bootstrap_button "삭제" button_type="submit" button_class="btn-outline-danger mx-1" %}
+  </form>
+  <a href="{% url 'movies:index' %}" class="btn btn-outline-info mx-1">홈</a>
+</div>
+<hr>
+<h5>댓글 목록</h5>
+
+{% endblock content %}
