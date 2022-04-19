@@ -19,8 +19,8 @@
             {% csrf_token %}
             {% bootstrap_button "로그아웃" button_type="submit" button_class="btn-outline-secondary mx-1 text-nowrap" %}
           </form>
-          <a href="" class="btn btn-outline-secondary mx-1 text-nowrap">회원정보수정</a>
-          <form action="" method="POST">
+          <a href="{% url 'accounts:update' %}" class="btn btn-outline-secondary mx-1 text-nowrap">회원정보수정</a>
+          <form action="{% url 'accounts:delete' %}" method="POST">
             {% csrf_token %}
             {% bootstrap_button "회원탈퇴" button_type="submit" button_class="btn-outline-secondary mx-1 text-nowrap"  %}
           </form>
@@ -28,8 +28,8 @@
       </nav>
     {% else %}
     <nav class="d-flex justify-content-end">
-      <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary mx-1">Login</a>
-      <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary mx-1">Signup</a>
+      <a href="{% url 'accounts:login' %}" class="btn btn-outline-secondary mx-1">로그인</a>
+      <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary mx-1">회원가입</a>
     </nav>
     {% endif %}
     <hr>

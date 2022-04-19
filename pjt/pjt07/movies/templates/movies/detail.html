@@ -4,17 +4,51 @@
 {% block content %}
 <h1 class="fs-1 fw-bold">DETAIL</h1>
 <hr>
-<p class="fs-4">{{ movie.title }}</p>
+
+<h2 class="mb-3">{{ movie.title }}</h2>
 <p>{{ movie.description }}</p>
+
+{% if request.user == movie.user %}
 <div class="d-flex justify-content-end">
   <a href="{% url 'movies:update' movie.pk %}" class="btn btn-outline-warning mx-1">수정</a>
-  <form action="" method="POST">
+  <form action="{% url 'movies:delete' movie.pk %}" method="POST">
     {% csrf_token %}
     {% bootstrap_button "삭제" button_type="submit" button_class="btn-outline-danger mx-1" %}
   </form>
-  <a href="{% url 'movies:index' %}" class="btn btn-outline-info mx-1">홈</a>
 </div>
-<hr>
-<h5>댓글 목록</h5>
+{% endif %}
 
+<hr>
+<h3 class="mb-3">댓글 목록</h3>
+{% for comment in comments %}
+<ul class="d-flex justify-content-between">
+  <li class="fs-5">{{ comment.content }}</li>
+  {% if request.user == comment.user %}
+  <form action="{% url 'movies:delete_comment' movie.pk comment.pk %}" method="POST">
+    {% csrf_token %}
+    {% bootstrap_button "삭제" button_type="submit" button_class="btn-outline-danger mx-1 align-self-baseline" %}
+  </form>
+{% endif %}
+</ul>
+{% endfor %}
+<hr>
+<form action="{% url 'movies:create_comment' movie.pk %}" method="POST">
+  {% csrf_token %}
+  <div>
+    <div class="container">
+      <div class="row justify-content-between">
+        <div class="col-10 col-lg-11 p-0">
+          {% bootstrap_form commentform layout="inline" %}
+        </div>
+        <div class="col-2 col-lg-1 p-0 text-nowrap d-flex justify-content-end">
+          {% bootstrap_button "제출" button_type="submit" button_class="btn-outline-primary" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<hr>
+<div class="d-flex justify-content-end">
+  <a href="{% url 'movies:index' %}" class="btn btn-outline-info">홈</a>
+</div>
 {% endblock content %}
