@@ -7,6 +7,9 @@
   <title>Document</title>
 </head>
 <body>
+  {% if request.user.is_authenticated %}
+    <h1>안녕하세요. {{ request.user }}님,</h1>
+  {% endif %}
   {% block content %}
   {% endblock content %}
   
