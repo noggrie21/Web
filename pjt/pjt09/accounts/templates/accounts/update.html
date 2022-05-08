@@ -9,4 +9,21 @@
   {% bootstrap_form changeform %}
   {% bootstrap_button "submit" button_type="submit" button_class="btn-primary" %}
 </form>
+<form id='delete-form' action="{% url 'accounts:delete' %}" method="POST">
+  {% csrf_token %}
+  {% bootstrap_button "탈퇴하기" button_type="submit" button_class="btn-primary" %}
+</form>
 {% endblock content %}
+
+
+{% block script %}
+  <script>
+    const form = document.querySelector('#delete-form')
+    form.addEventListener('click', function (event) {
+      response = confirm('마지막으로 확인합니다.\n탈퇴하시겠습니까??')
+      if (!response) {
+        event.preventDefault()
+      }
+    })
+  </script>
+{% endblock script %}

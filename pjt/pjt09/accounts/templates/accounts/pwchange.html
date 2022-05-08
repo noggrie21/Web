@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<h1>비밀번호 수정</h1>
+<form action="" method="POST">
+  {% csrf_token %}
+  {% bootstrap_form pwform %}
+  {% bootstrap_button "submit" button_type="submit" button_class="btn-primary" %}
+</form>
+{% endblock content %}
