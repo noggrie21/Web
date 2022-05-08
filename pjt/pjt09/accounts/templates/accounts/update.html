@@ -2,9 +2,11 @@
 {% load bootstrap5 %}
 
 {% block content %}
-<form action="" method="POST">
+<h1>회원정보 수정</h1>
+<hr>
+<form action="{% url 'accounts:update' %}" method="POST">
   {% csrf_token %}
-  {% bootstrap_form loginform %}
+  {% bootstrap_form changeform %}
   {% bootstrap_button "submit" button_type="submit" button_class="btn-primary" %}
 </form>
 {% endblock content %}

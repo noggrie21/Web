@@ -12,6 +12,7 @@
     <form action="{% url 'accounts:logout' %}" method="POST">
       {% csrf_token %}
       <input type="submit" value="로그아웃">
+      <a href="{% url 'accounts:update' %}">회원정보수정</a>
     </form>
   {% else %}
     <a href="{% url 'accounts:signup' %}">회원가입</a>
